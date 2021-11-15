@@ -4,6 +4,8 @@ GET http://localhost:3000/subscribers
 
 GET http://localhost:3000/subscribers/6192b4f783636f0795215b03
 
+###
+DELETE http://localhost:3000/subscribers/6192b624761b31ea7c7fdcf0
 
 ###
 POST http://localhost:3000/subscribers

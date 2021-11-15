@@ -33,6 +33,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Delete one
+router.delete('/:id', getSubscriber, async (req, res) => {
+  try {
+    await req.subscriber.remove();
+    res.json({ message: 'Subscriber deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 async function getSubscriber(req, res, next) {
   try {
     const subscriber = await Subscriber.findById(req.params.id);
