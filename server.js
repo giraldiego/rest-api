@@ -23,4 +23,11 @@ mongoose
 const db = mongoose.connection;
 db.on('error', (err) => console.log('Error:', err.message));
 
+// Add json parser middleware
+app.use(express.json());
+
+// Add route for subscribers
+const subscribersRouter = require('./routes/subscribers');
+app.use('/subscribers', subscribersRouter);
+
 app.listen(port, () => console.log('Server Started'));
