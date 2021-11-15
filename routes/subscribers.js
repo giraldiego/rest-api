@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Subscriber = require('./models/subscriber')
+const Subscriber = require('../models/subscriber')
 
 module.exports = router;
 
 // Get all
-router.get('/', (req, res) => {
-    res.send('Show list of items')
+router.get('/', async (req, res) => {
+    try {
+        const subscribers = await Subscriber.find();
+        res.json(subscribers);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
 });
 
 // Get one
@@ -15,6 +20,17 @@ router.get('/:id', (req, res) => {
 });
 
 // Create one
-router.post('/', (req, res) => {
-    res.send('You want to create something');
+router.post('/', async (req, res) => {
+    const subscriber = new Subscriber(
+        {
+            name: req.body.name,
+            subscribedToChannel: req.body.subscribedToChannel,
+        }
+    );
+    try {
+        const newSubscriber = await subscriber.save();
+        res.status(201).json(newSubscriber);
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
 });

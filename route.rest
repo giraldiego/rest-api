@@ -7,3 +7,9 @@ GET http://localhost:3000/subscribers/47
 
 ###
 POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Kyle",
+    "subscribedToChannel": "Web Dev Simplified"
+}
